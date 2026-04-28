@@ -2,6 +2,7 @@ package service;
 
 import repository.PetRepository;
 import model.Pet;
+import model.Cliente;
 
 public class PetService {
 
@@ -10,8 +11,8 @@ public class PetService {
 
     // . ADICIONAR PET
     public void adicionarPet(String nome, String codigo, String animal, String raca, int anoNascimento,
-            double peso) {
-        Pet pet = new Pet(nome, codigo, animal, raca, anoNascimento, peso);
+            double peso, Cliente dono) {
+        Pet pet = new Pet(nome, codigo, animal, raca, anoNascimento, peso, dono);
         repositorioPets.adicionar(pet);
     }
 
@@ -25,9 +26,10 @@ public class PetService {
             throw new RuntimeException("[INFO] Nenhum pet cadastrado.");
         } else {
             for (Pet p : repositorioPets.listar()) {
-                System.out.println(contador + " - " + p.getNome() + "(" + p.getCodigo() + ")" + " - " + p.getAnimal()
+                System.out.println(contador + " - " + p.getNome() + " (" + p.getCodigo() + ")" + " - " + p.getAnimal()
                         + ", " + p.getRaca() + ", " +
-                        p.getAnoNascimento() + ", " + p.getPeso() + " kg");
+                        p.getAnoNascimento() + ", " + p.getPeso() + " kg"
+                        + " | Dono: " + p.getDono().getNome());
                 contador++;
             }
         }
@@ -51,11 +53,11 @@ public class PetService {
 
     // . ATUALIZAR PET
     public void atualizarPet(String codigo, String nomeNovo, String codigoNovo, String animal, String raca,
-            int anoNascimento, double peso) {
+            int anoNascimento, double peso, Cliente dono) {
         boolean encontrado = false;
         for (Pet p : repositorioPets.listar()) {
             if (p.getCodigo().equals(codigo)) {
-                repositorioPets.atualizar(p, nomeNovo, codigoNovo, animal, raca, anoNascimento, peso);
+                repositorioPets.atualizar(p, nomeNovo, codigoNovo, animal, raca, anoNascimento, peso, dono);
                 encontrado = true;
                 break;
             }

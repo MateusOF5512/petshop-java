@@ -1,6 +1,7 @@
 package repository;
 
 import model.Pet;
+import model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,12 +38,13 @@ public class PetRepository {
 
     // . MÉTODO ATUALIZAR
     public void atualizar(Pet p, String nomeNovo, String codigo, String animal, String raca, int anoNascimento,
-            double peso) {
+            double peso, Cliente dono) {
         p.setNome(nomeNovo);
         p.setCodigo(codigo);
         p.setAnimal(animal);
         p.setRaca(raca);
         p.setAnoNascimento(anoNascimento);
         p.setPeso(peso);
+        p.setDono(dono);
     }
 }

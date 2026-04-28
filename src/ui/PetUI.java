@@ -1,7 +1,9 @@
 package ui;
 
+import service.ClienteService;
 import service.PetService;
 import util.EntradaUtil;
+import model.Cliente;
 
 public class PetUI {
 
@@ -9,6 +11,7 @@ public class PetUI {
 
         int op = 0;
         PetService petService = new PetService();
+        ClienteService clienteService = new ClienteService();
 
         while (op != 5) {
             System.out.println();
@@ -53,7 +56,29 @@ public class PetUI {
                     double peso = EntradaUtil.lerDouble();
 
                     try {
-                        petService.adicionarPet(nome, codigo, animal, raca, anoNascimento, peso);
+                        clienteService.listarClientes();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        System.err.println("[INFO] Cadastre um cliente antes de adicionar um pet.");
+                        break;
+                    }
+
+                    boolean cancelar = false;
+                    Cliente dono = null;
+                    while (dono == null && !cancelar) {
+                        System.out.print("Digite o CPF do dono do pet: ");
+                        String cpf = EntradaUtil.lerString();
+                        try {
+                            dono = clienteService.buscarCliente(cpf);
+                        } catch (RuntimeException e) {
+                            System.err.println(e.getMessage());
+                            cancelar = true;
+                        }
+                    }
+                    if (cancelar) break;
+
+                    try {
+                        petService.adicionarPet(nome, codigo, animal, raca, anoNascimento, peso, dono);
                         System.out.println();
                         System.out.println("[OK] Pet adicionado com sucesso!");
                         System.out.println("\n".repeat(5));
@@ -120,8 +145,30 @@ public class PetUI {
                     double pesoNovo = EntradaUtil.lerDouble();
 
                     try {
+                        clienteService.listarClientes();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        System.err.println("[INFO] Cadastre um cliente antes de adicionar um pet.");
+                        break;
+                    }
+
+                    boolean cancelarAtualizar = false;
+                    Cliente donoAtualizar = null;
+                    while (donoAtualizar == null && !cancelarAtualizar) {
+                        System.out.print("Digite o novo CPF do dono do pet: ");
+                        String cpf = EntradaUtil.lerString();
+                        try {
+                            donoAtualizar = clienteService.buscarCliente(cpf);
+                        } catch (RuntimeException e) {
+                            System.err.println(e.getMessage());
+                            cancelarAtualizar = true;
+                        }
+                    }
+                    if (cancelarAtualizar) break;
+
+                    try {
                         petService.atualizarPet(codigoAntigo, nomeNovo, codigoNovo, animalNovo, racaNova,
-                                anoNascimentoAtualizar, pesoNovo);
+                                anoNascimentoAtualizar, pesoNovo, donoAtualizar);
 
                         System.out.println();
                         System.out.println("[OK] Pet atualizado com sucesso!");

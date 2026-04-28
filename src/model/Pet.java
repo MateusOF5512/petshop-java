@@ -7,15 +7,17 @@ public class Pet {
     private String raca;
     private int anoNascimento;
     private double peso;
+    private Cliente dono;
 
     // . CONSTRUTOR
-    public Pet(String nome, String codigo, String animal, String raca, int anoNascimento, double peso) {
+    public Pet(String nome, String codigo, String animal, String raca, int anoNascimento, double peso, Cliente dono) {
         this.nome = nome;
         this.codigo = codigo;
         this.animal = animal;
         this.raca = raca;
         this.anoNascimento = anoNascimento;
         this.peso = peso;
+        this.dono = dono;
     }
 
     // . GETTERS
@@ -43,6 +45,10 @@ public class Pet {
         return peso;
     }
 
+    public Cliente getDono() {
+        return dono;
+    }
+
     // . SETTERS
     public void setNome(String nome) {
         this.nome = nome;
@@ -66,5 +72,9 @@ public class Pet {
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    public void setDono(Cliente dono) {
+        this.dono = dono;
     }
 }

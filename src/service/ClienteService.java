@@ -66,4 +66,14 @@ public class ClienteService {
             throw new RuntimeException("[INFO] Cliente nao encontrado! Nenhuma informação foi alterada.");
         }
     }
+
+    // . BUSCAR CLIENTE POR CPF
+    public Cliente buscarCliente(String cpf) {
+        for (Cliente c : repositorioClientes.listar()) {
+            if (c.getCpf().equals(cpf)) {
+                return c;
+            }
+        }
+        throw new RuntimeException("[INFO] Cliente não encontrado.");
+    }
 }
