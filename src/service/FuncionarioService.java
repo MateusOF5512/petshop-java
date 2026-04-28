@@ -1,4 +1,5 @@
 package service;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import repository.FuncionarioRepository;
@@ -7,13 +8,13 @@ import model.Funcionario;
 public class FuncionarioService {
     private FuncionarioRepository repositorioFuncionarios = FuncionarioRepository.getInstance();
 
-    //. ADICIONAR FUNCIONARIO
+    // . ADICIONAR FUNCIONARIO
     public void adicionarFuncionario(String nome, String cpf, LocalDate dataNascimento, String telefone, String cargo) {
         Funcionario funcionario = new Funcionario(nome, cpf, dataNascimento, telefone, cargo);
         repositorioFuncionarios.adicionar(funcionario);
     }
 
-    //. LISTAR FUNCIONARIOS
+    // . LISTAR FUNCIONARIOS
     public void listarFuncionarios() {
         int contador = 1;
         System.out.println("\n".repeat(2));
@@ -25,12 +26,12 @@ public class FuncionarioService {
                 System.out.println(contador + " - " + f.getNome() + "(" + f.getCargo() + ")" + ", " + f.getCpf() + ", "
                         + f.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ", "
                         + f.getTelefone());
-                contador++; 
+                contador++;
             }
         }
     }
 
-    //. REMOVER FUNCIONARIO
+    // . REMOVER FUNCIONARIO
     public void excluirFuncionario(String cpf) {
         boolean removido = false;
         for (Funcionario f : repositorioFuncionarios.listar()) {
@@ -45,7 +46,7 @@ public class FuncionarioService {
         }
     }
 
-    //. ATUALIZAR FUNCIONARIO
+    // . ATUALIZAR FUNCIONARIO
     public void atualizarFuncionario(String cpf, String nome, String cpfNovo, LocalDate dataNascimento,
             String telefone, String cargo) {
         boolean encontrado = false;
@@ -53,6 +54,7 @@ public class FuncionarioService {
             if (f.getCpf().equals(cpf)) {
                 repositorioFuncionarios.atualizar(f, nome, cpfNovo, dataNascimento, telefone, cargo);
                 encontrado = true;
+                break;
             }
         }
         if (!encontrado) {

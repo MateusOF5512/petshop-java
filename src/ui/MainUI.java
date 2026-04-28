@@ -1,4 +1,5 @@
 package ui;
+
 import util.EntradaUtil;
 
 public class MainUI {
@@ -16,8 +17,7 @@ public class MainUI {
             System.out.println("__________________________________");
             System.out.println();
             System.out.print("Digite a opção desejada: ");
-            op = EntradaUtil.sc.nextInt();
-            EntradaUtil.sc.nextLine();
+            op = EntradaUtil.lerInt();
 
             switch (op) {
                 case 1:

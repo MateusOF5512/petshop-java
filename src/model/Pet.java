@@ -5,11 +5,11 @@ public class Pet {
     private String codigo;
     private String animal;
     private String raca;
-    private String anoNascimento;
+    private int anoNascimento;
     private double peso;
 
-    //. CONSTRUTOR
-    public Pet(String nome, String codigo, String animal, String raca, String anoNascimento, double peso) {
+    // . CONSTRUTOR
+    public Pet(String nome, String codigo, String animal, String raca, int anoNascimento, double peso) {
         this.nome = nome;
         this.codigo = codigo;
         this.animal = animal;
@@ -18,7 +18,7 @@ public class Pet {
         this.peso = peso;
     }
 
-    //. GETTERS
+    // . GETTERS
     public String getNome() {
         return nome;
     }
@@ -35,7 +35,7 @@ public class Pet {
         return raca;
     }
 
-    public String getAnoNascimento() {
+    public int getAnoNascimento() {
         return anoNascimento;
     }
 
@@ -43,7 +43,7 @@ public class Pet {
         return peso;
     }
 
-    //. SETTERS
+    // . SETTERS
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -60,7 +60,7 @@ public class Pet {
         this.raca = raca;
     }
 
-    public void setAnoNascimento(String dataNascimento) {
+    public void setAnoNascimento(int dataNascimento) {
         this.anoNascimento = dataNascimento;
     }
 

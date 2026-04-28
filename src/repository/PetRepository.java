@@ -1,4 +1,5 @@
 package repository;
+
 import model.Pet;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,10 @@ public class PetRepository {
     private List<Pet> pets = new ArrayList<>();
     private static PetRepository instancia;
 
-    private PetRepository() {}
+    private PetRepository() {
+    }
 
-    //. MÉTODO GETINSTANCE
+    // . MÉTODO GETINSTANCE
     public static PetRepository getInstance() {
         if (instancia == null) {
             instancia = new PetRepository();
@@ -18,23 +20,24 @@ public class PetRepository {
         return instancia;
     }
 
-    //. MÉTODO ADICIONAR
+    // . MÉTODO ADICIONAR
     public void adicionar(Pet pet) {
         pets.add(pet);
     }
 
-    //. MÉTODO REMOVER
+    // . MÉTODO REMOVER
     public void remover(Pet p) {
         pets.remove(p);
     }
 
-    //. MÉTODO LISTAR
+    // . MÉTODO LISTAR
     public List<Pet> listar() {
         return pets;
     }
 
-    //. MÉTODO ATUALIZAR
-    public void atualizar(Pet p, String nomeNovo, String codigo, String animal, String raca, String anoNascimento, double peso) {
+    // . MÉTODO ATUALIZAR
+    public void atualizar(Pet p, String nomeNovo, String codigo, String animal, String raca, int anoNascimento,
+            double peso) {
         p.setNome(nomeNovo);
         p.setCodigo(codigo);
         p.setAnimal(animal);

@@ -1,4 +1,5 @@
 package ui;
+
 import java.time.LocalDate;
 import service.ClienteService;
 import util.EntradaUtil;
@@ -23,13 +24,11 @@ public class ClienteUI {
             System.out.println();
 
             System.out.print("Digite a opção desejada: ");
-            op = EntradaUtil.sc.nextInt();
-            //. Limpa o buffer
-            EntradaUtil.sc.nextLine();
+            op = EntradaUtil.lerInt();
 
             switch (op) {
 
-                //. CASO 1 -> Adicionar cliente
+                // . CASO 1 -> Adicionar cliente
                 case 1:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe os dados do cliente ------");
@@ -48,7 +47,8 @@ public class ClienteUI {
 
                     System.out.print("Digite o telefone do cliente: ");
                     String telefone = EntradaUtil.lerString();
-                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").replace(".", "");
+                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").replace(".",
+                            "");
 
                     try {
                         clienteService.adicionarCliente(nome, cpf, dataNascimento, telefone);
@@ -57,10 +57,10 @@ public class ClienteUI {
                         System.out.println("\n".repeat(5));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
-                    } 
+                    }
                     break;
 
-                //. CASO 2 -> Remover cliente
+                // . CASO 2 -> Remover cliente
                 case 2:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe o cliente a ser removido ------");
@@ -68,7 +68,7 @@ public class ClienteUI {
 
                     System.out.print("Digite o cpf do cliente: ");
                     String cpfRemover = EntradaUtil.lerString().replace("-", "")
-                    .replace(".", "").replace(" ", "");
+                            .replace(".", "").replace(" ", "");
 
                     try {
                         clienteService.excluirCliente(cpfRemover);
@@ -81,7 +81,7 @@ public class ClienteUI {
                     }
                     break;
 
-                //. CASO 3 -> Listar clientes
+                // . CASO 3 -> Listar clientes
                 case 3:
                     try {
                         clienteService.listarClientes();
@@ -91,7 +91,7 @@ public class ClienteUI {
                     }
                     break;
 
-                //. CASO 4 -> Atualizar clientes
+                // . CASO 4 -> Atualizar clientes
                 case 4:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Insira os dados a serem atualizados ------");
@@ -99,7 +99,7 @@ public class ClienteUI {
 
                     System.out.print("Digite o cpf do cliente a ser atualizado: ");
                     String cpfAntigo = EntradaUtil.lerString().replace("-", "")
-                    .replace(".", "").replace(" ", "");
+                            .replace(".", "").replace(" ", "");
 
                     System.out.print("Digite o novo nome do cliente: ");
                     String nomeAtualizar = EntradaUtil.lerString();
@@ -114,27 +114,29 @@ public class ClienteUI {
 
                     System.out.print("Digite o novo telefone do cliente: ");
                     String telefoneAtualizar = EntradaUtil.lerString();
-                    telefoneAtualizar = telefoneAtualizar.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").replace(".", "");
+                    telefoneAtualizar = telefoneAtualizar.replace("(", "").replace(")", "").replace("-", "")
+                            .replace(" ", "").replace(".", "");
 
                     System.out.println();
 
                     try {
-                        clienteService.atualizarCliente(cpfAntigo, nomeAtualizar, cpfAtualizar, dataNascimentoAtualizar, telefoneAtualizar);
+                        clienteService.atualizarCliente(cpfAntigo, nomeAtualizar, cpfAtualizar, dataNascimentoAtualizar,
+                                telefoneAtualizar);
                         System.out.println();
                         System.out.println("[OK] Cliente atualizado com sucesso!");
                         System.out.println("\n".repeat(5));
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
-                        System.out.println("\n".repeat(5)); 
+                        System.out.println("\n".repeat(5));
                     }
                     break;
 
-                //. CASO 5 -> Voltar ao menu principal
+                // . CASO 5 -> Voltar ao menu principal
                 case 5:
                     System.out.println("\n".repeat(5));
                     break;
 
-                //. CASO DEFAULT -> Opção inválida
+                // . CASO DEFAULT -> Opção inválida
                 default:
                     System.out.println();
                     System.err.println("[ERRO] Opção inválida, tente novamente.");

@@ -1,4 +1,5 @@
 package ui;
+
 import service.PetService;
 import util.EntradaUtil;
 
@@ -23,12 +24,11 @@ public class PetUI {
             System.out.println();
 
             System.out.print("Digite a opção desejada: ");
-            op = EntradaUtil.sc.nextInt();
-            EntradaUtil.sc.nextLine();
+            op = EntradaUtil.lerInt();
 
             switch (op) {
 
-                //. CASO 1 -> Adicionar pet
+                // . CASO 1 -> Adicionar pet
                 case 1:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe os dados do pet ------");
@@ -47,11 +47,10 @@ public class PetUI {
                     String raca = EntradaUtil.lerString();
 
                     System.out.print("Digite o ano de nascimento do pet: ");
-                    String anoNascimento = EntradaUtil.lerString();
+                    int anoNascimento = EntradaUtil.lerInt();
 
                     System.out.print("Digite o peso do pet: ");
-                    double peso = EntradaUtil.sc.nextDouble();
-                    EntradaUtil.sc.nextLine();
+                    double peso = EntradaUtil.lerDouble();
 
                     try {
                         petService.adicionarPet(nome, codigo, animal, raca, anoNascimento, peso);
@@ -63,7 +62,7 @@ public class PetUI {
                     }
                     break;
 
-                //. CASO 2 -> Remover pet
+                // . CASO 2 -> Remover pet
                 case 2:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe o pet a ser removido ------");
@@ -83,7 +82,7 @@ public class PetUI {
                     }
                     break;
 
-                //. CASO 3 -> Listar pets
+                // . CASO 3 -> Listar pets
                 case 3:
                     try {
                         petService.listarPets();
@@ -93,7 +92,7 @@ public class PetUI {
                     }
                     break;
 
-                //. CASO 4 -> Atualizar pet
+                // . CASO 4 -> Atualizar pet
                 case 4:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Insira os dados a serem atualizados ------");
@@ -115,11 +114,10 @@ public class PetUI {
                     String racaNova = EntradaUtil.lerString();
 
                     System.out.print("Digite a novo ano de nascimento do pet: ");
-                    String anoNascimentoAtualizar = EntradaUtil.lerString();
+                    int anoNascimentoAtualizar = EntradaUtil.lerInt();
 
                     System.out.print("Digite o novo peso do pet: ");
-                    double pesoNovo = EntradaUtil.sc.nextDouble();
-                    EntradaUtil.sc.nextLine();
+                    double pesoNovo = EntradaUtil.lerDouble();
 
                     try {
                         petService.atualizarPet(codigoAntigo, nomeNovo, codigoNovo, animalNovo, racaNova,
@@ -135,12 +133,12 @@ public class PetUI {
                     }
                     break;
 
-                //. CASO 5 -> Voltar ao menu principal
+                // . CASO 5 -> Voltar ao menu principal
                 case 5:
                     System.out.println("\n".repeat(5));
                     break;
 
-                //. CASO DEFAULT -> Opção inválida
+                // . CASO DEFAULT -> Opção inválida
                 default:
                     System.out.println();
                     System.err.println("[ERRO] Opção inválida, tente novamente.");

@@ -1,19 +1,21 @@
 package service;
+
 import repository.PetRepository;
 import model.Pet;
 
 public class PetService {
 
-    //. Criação de um repositório
+    // . Criação de um repositório
     private PetRepository repositorioPets = PetRepository.getInstance();
 
-    //. ADICIONAR PET
-    public void adicionarPet(String nome, String codigo, String animal, String raca, String anoNascimento, double peso) {
+    // . ADICIONAR PET
+    public void adicionarPet(String nome, String codigo, String animal, String raca, int anoNascimento,
+            double peso) {
         Pet pet = new Pet(nome, codigo, animal, raca, anoNascimento, peso);
         repositorioPets.adicionar(pet);
     }
 
-    //. LISTAR PETS
+    // . LISTAR PETS
     public void listarPets() {
         int contador = 1;
         System.out.println("\n".repeat(2));
@@ -23,14 +25,15 @@ public class PetService {
             throw new RuntimeException("[INFO] Nenhum pet cadastrado.");
         } else {
             for (Pet p : repositorioPets.listar()) {
-                System.out.println(contador + " - " + p.getNome() + "(" + p.getCodigo() + ")" + " - " + p.getAnimal() + ", " + p.getRaca() + ", " +
+                System.out.println(contador + " - " + p.getNome() + "(" + p.getCodigo() + ")" + " - " + p.getAnimal()
+                        + ", " + p.getRaca() + ", " +
                         p.getAnoNascimento() + ", " + p.getPeso() + " kg");
                 contador++;
             }
         }
     }
 
-    //. REMOVER PET
+    // . REMOVER PET
     public void excluirPet(String codigo) {
         boolean removido = false;
 
@@ -46,14 +49,15 @@ public class PetService {
         }
     }
 
-    //. ATUALIZAR PET
+    // . ATUALIZAR PET
     public void atualizarPet(String codigo, String nomeNovo, String codigoNovo, String animal, String raca,
-            String anoNascimento, double peso) {
+            int anoNascimento, double peso) {
         boolean encontrado = false;
         for (Pet p : repositorioPets.listar()) {
             if (p.getCodigo().equals(codigo)) {
                 repositorioPets.atualizar(p, nomeNovo, codigoNovo, animal, raca, anoNascimento, peso);
                 encontrado = true;
+                break;
             }
         }
         if (!encontrado) {

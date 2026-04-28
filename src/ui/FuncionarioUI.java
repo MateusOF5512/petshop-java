@@ -1,4 +1,5 @@
 package ui;
+
 import java.time.LocalDate;
 import service.FuncionarioService;
 import util.EntradaUtil;
@@ -23,11 +24,10 @@ public class FuncionarioUI {
             System.out.println();
 
             System.out.print("Digite a opção desejada: ");
-            op = EntradaUtil.sc.nextInt();
-            EntradaUtil.sc.nextLine();
+            op = EntradaUtil.lerInt();
 
             switch (op) {
-                //. CASO 1 -> Adicionar funcionario
+                // . CASO 1 -> Adicionar funcionario
                 case 1:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe os dados do funcionário ------");
@@ -62,7 +62,7 @@ public class FuncionarioUI {
                     }
                     break;
 
-                //. CASO 2 -> Remover funcionario
+                // . CASO 2 -> Remover funcionario
                 case 2:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe o funcionário a ser removido ------");
@@ -70,7 +70,7 @@ public class FuncionarioUI {
 
                     System.out.print("Digite o CPF do funcionário: ");
                     String cpfRemover = EntradaUtil.lerString().replace("-", "")
-                        .replace(".", "").replace(" ", "");
+                            .replace(".", "").replace(" ", "");
                     try {
                         funcionarioService.excluirFuncionario(cpfRemover);
                         System.out.println();
@@ -82,7 +82,7 @@ public class FuncionarioUI {
                     }
                     break;
 
-                //. CASO 3 -> Listar funcionarios
+                // . CASO 3 -> Listar funcionarios
                 case 3:
                     try {
                         funcionarioService.listarFuncionarios();
@@ -92,7 +92,7 @@ public class FuncionarioUI {
                     }
                     break;
 
-                //. CASO 4 -> Atualizar funcionario
+                // . CASO 4 -> Atualizar funcionario
                 case 4:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Insira os dados a serem atualizados ------");
@@ -100,7 +100,7 @@ public class FuncionarioUI {
 
                     System.out.print("Digite o cpf do funcionário a ser atualizado: ");
                     String cpfAntigo = EntradaUtil.lerString().replace("-", "")
-                        .replace(".", "").replace(" ", "");
+                            .replace(".", "").replace(" ", "");
 
                     System.out.print("Digite o novo nome do funcionário: ");
                     String nomeAtualizar = EntradaUtil.lerString();
@@ -135,17 +135,17 @@ public class FuncionarioUI {
                     }
                     break;
 
-                //. CASO 5 -> Voltar ao menu principal
+                // . CASO 5 -> Voltar ao menu principal
                 case 5:
                     System.out.println("\n".repeat(5));
                     break;
 
-                //. CASO DEFAULT -> Opção inválida
+                // . CASO DEFAULT -> Opção inválida
                 default:
                     System.out.println();
                     System.err.println("[ERRO] Opção inválida, tente novamente.");
                     System.out.println();
-                }
+            }
         }
     }
 }

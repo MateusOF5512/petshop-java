@@ -1,4 +1,5 @@
 package model;
+
 import java.time.LocalDate;
 
 public class Pessoa {
@@ -7,8 +8,10 @@ public class Pessoa {
     private LocalDate dataNascimento;
     private String telefone;
 
-    //. CONSTRUTOR -> Permite que seja criado um objeto Pessoa (pode ser usado em classes que herdam de Pessoa)
-    //. Protected garante que só subclasses (Cliente, Funcionario) ou classes do mesmo package possam instanciá-lo
+    // . CONSTRUTOR -> Permite que seja criado um objeto Pessoa (pode ser usado em
+    // . classes que herdam de Pessoa)
+    // . Protected garante que só subclasses (Cliente, Funcionario) ou classes do
+    // . mesmo package possam instanciá-lo
     protected Pessoa(String nome, String cpf, LocalDate dataNascimento, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
@@ -16,7 +19,8 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
-   //. GETTERS - > Permite que sejam acessados os atributos privados de um objeto Pessoa (ou classes que herdam de Pessoa)
+    // . GETTERS - > Permite que sejam acessados os atributos privados de um objeto
+    // . pessoa (ou classes que herdam de Pessoa)
     public String getNome() {
         return nome;
     }
@@ -33,7 +37,8 @@ public class Pessoa {
         return telefone;
     }
 
-    //. SETTERS -> Permitem alterar os atributos privados de um objeto Pessoa (e de classes que herdam de Pessoa)
+    // . SETTERS -> Permitem alterar os atributos privados de um objeto Pessoa (e de
+    // . classes que herdam de Pessoa)
     public void setNome(String nome) {
         this.nome = nome;
     }
