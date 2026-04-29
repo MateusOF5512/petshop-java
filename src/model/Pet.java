@@ -20,6 +20,7 @@ public class Pet {
         this.dono = dono;
     }
 
+
     // . GETTERS
     public String getNome() {
         return nome;
@@ -49,6 +50,7 @@ public class Pet {
         return dono;
     }
 
+
     // . SETTERS
     public void setNome(String nome) {
         this.nome = nome;
@@ -77,4 +79,5 @@ public class Pet {
     public void setDono(Cliente dono) {
         this.dono = dono;
     }
+    
 }

@@ -19,6 +19,7 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
+
     // . GETTERS - > Permite que sejam acessados os atributos privados de um objeto
     // . pessoa (ou classes que herdam de Pessoa)
     public String getNome() {
@@ -37,6 +38,7 @@ public class Pessoa {
         return telefone;
     }
 
+
     // . SETTERS -> Permitem alterar os atributos privados de um objeto Pessoa (e de
     // . classes que herdam de Pessoa)
     public void setNome(String nome) {
@@ -54,4 +56,5 @@ public class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
 }

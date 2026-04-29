@@ -5,12 +5,14 @@ import service.FuncionarioService;
 import util.EntradaUtil;
 
 public class FuncionarioUI {
+
     public static void exibirMenuFuncionario() {
 
         int op = 0;
         FuncionarioService funcionarioService = new FuncionarioService();
 
         while (op != 5) {
+
             System.out.println();
             System.out.println("------------------------------------------");
             System.out.println("   FUNCIONARIOS                           ");
@@ -27,9 +29,10 @@ public class FuncionarioUI {
             op = EntradaUtil.lerInt();
 
             switch (op) {
+
                 // . CASO 1 -> Adicionar funcionario
                 case 1:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Informe os dados do funcionário ------");
                     System.out.println();
 
@@ -46,8 +49,8 @@ public class FuncionarioUI {
 
                     System.out.print("Digite o telefone do funcionário: ");
                     String telefone = EntradaUtil.lerString();
-                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").replace(".",
-                            "");
+                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "")
+                            .replace(" ", "").replace(".", "");
 
                     System.out.print("Digite o cargo do funcionário: ");
                     String cargo = EntradaUtil.lerString();
@@ -56,7 +59,7 @@ public class FuncionarioUI {
                         funcionarioService.adicionarFuncionario(nome, cpf, dataNascimento, telefone, cargo);
                         System.out.println();
                         System.out.println("[OK] Funcionário adicionado com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }
@@ -64,21 +67,30 @@ public class FuncionarioUI {
 
                 // . CASO 2 -> Remover funcionario
                 case 2:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Informe o funcionário a ser removido ------");
                     System.out.println();
+
+                    try {
+                        funcionarioService.listarFuncionarios();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
 
                     System.out.print("Digite o CPF do funcionário: ");
                     String cpfRemover = EntradaUtil.lerString().replace("-", "")
                             .replace(".", "").replace(" ", "");
+
                     try {
                         funcionarioService.excluirFuncionario(cpfRemover);
                         System.out.println();
                         System.out.println("[OK] Funcionário removido com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     }
                     break;
 
@@ -86,7 +98,7 @@ public class FuncionarioUI {
                 case 3:
                     try {
                         funcionarioService.listarFuncionarios();
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }
@@ -94,11 +106,19 @@ public class FuncionarioUI {
 
                 // . CASO 4 -> Atualizar funcionario
                 case 4:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Insira os dados a serem atualizados ------");
                     System.out.println();
 
-                    System.out.print("Digite o cpf do funcionário a ser atualizado: ");
+                    try {
+                        funcionarioService.listarFuncionarios();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
+
+                    System.out.print("Digite o CPF do funcionário a ser atualizado: ");
                     String cpfAntigo = EntradaUtil.lerString().replace("-", "")
                             .replace(".", "").replace(" ", "");
 
@@ -128,16 +148,16 @@ public class FuncionarioUI {
                                 dataNascimentoAtualizar, telefoneAtualizar, cargoAtualizar);
                         System.out.println();
                         System.out.println("[OK] Funcionário atualizado com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     }
                     break;
 
                 // . CASO 5 -> Voltar ao menu principal
                 case 5:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     break;
 
                 // . CASO DEFAULT -> Opção inválida
@@ -148,4 +168,5 @@ public class FuncionarioUI {
             }
         }
     }
+
 }

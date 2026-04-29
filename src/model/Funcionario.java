@@ -11,13 +11,16 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
+
     // . GETTERS
     public String getCargo() {
         return cargo;
     }
 
+
     // . SETTERS
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+    
 }

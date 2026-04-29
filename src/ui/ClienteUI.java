@@ -5,12 +5,14 @@ import service.ClienteService;
 import util.EntradaUtil;
 
 public class ClienteUI {
+
     public static void exibirMenuCliente() {
 
         int op = 0;
         ClienteService clienteService = new ClienteService();
 
         while (op != 5) {
+
             System.out.println();
             System.out.println("------------------------------------------");
             System.out.println("   CLIENTES                               ");
@@ -30,7 +32,7 @@ public class ClienteUI {
 
                 // . CASO 1 -> Adicionar cliente
                 case 1:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Informe os dados do cliente ------");
                     System.out.println();
 
@@ -47,14 +49,14 @@ public class ClienteUI {
 
                     System.out.print("Digite o telefone do cliente: ");
                     String telefone = EntradaUtil.lerString();
-                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "").replace(" ", "").replace(".",
-                            "");
+                    telefone = telefone.replace("(", "").replace(")", "").replace("-", "")
+                            .replace(" ", "").replace(".", "");
 
                     try {
                         clienteService.adicionarCliente(nome, cpf, dataNascimento, telefone);
                         System.out.println();
                         System.out.println("[OK] Cliente adicionado com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }
@@ -62,11 +64,19 @@ public class ClienteUI {
 
                 // . CASO 2 -> Remover cliente
                 case 2:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Informe o cliente a ser removido ------");
                     System.out.println();
 
-                    System.out.print("Digite o cpf do cliente: ");
+                    try {
+                        clienteService.listarClientes();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
+
+                    System.out.print("Digite o CPF do cliente: ");
                     String cpfRemover = EntradaUtil.lerString().replace("-", "")
                             .replace(".", "").replace(" ", "");
 
@@ -74,10 +84,10 @@ public class ClienteUI {
                         clienteService.excluirCliente(cpfRemover);
                         System.out.println();
                         System.out.println("[OK] Cliente removido com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     }
                     break;
 
@@ -85,7 +95,7 @@ public class ClienteUI {
                 case 3:
                     try {
                         clienteService.listarClientes();
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (Exception e) {
                         System.err.println(e.getMessage());
                     }
@@ -93,18 +103,26 @@ public class ClienteUI {
 
                 // . CASO 4 -> Atualizar clientes
                 case 4:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     System.out.println("------- Insira os dados a serem atualizados ------");
                     System.out.println();
 
-                    System.out.print("Digite o cpf do cliente a ser atualizado: ");
+                    try {
+                        clienteService.listarClientes();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
+
+                    System.out.print("Digite o CPF do cliente a ser atualizado: ");
                     String cpfAntigo = EntradaUtil.lerString().replace("-", "")
                             .replace(".", "").replace(" ", "");
 
                     System.out.print("Digite o novo nome do cliente: ");
                     String nomeAtualizar = EntradaUtil.lerString();
 
-                    System.out.print("Digite o novoCPF do cliente: ");
+                    System.out.print("Digite o novo CPF do cliente: ");
                     String cpfNovo = EntradaUtil.lerString();
                     String cpfAtualizar = cpfNovo.replace("-", "").replace(".", "").replace(" ", "");
 
@@ -120,20 +138,20 @@ public class ClienteUI {
                     System.out.println();
 
                     try {
-                        clienteService.atualizarCliente(cpfAntigo, nomeAtualizar, cpfAtualizar, dataNascimentoAtualizar,
-                                telefoneAtualizar);
+                        clienteService.atualizarCliente(cpfAntigo, nomeAtualizar, cpfAtualizar,
+                                dataNascimentoAtualizar, telefoneAtualizar);
                         System.out.println();
                         System.out.println("[OK] Cliente atualizado com sucesso!");
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
-                        System.out.println("\n".repeat(5));
+                        System.out.println("\n".repeat(4));
                     }
                     break;
 
                 // . CASO 5 -> Voltar ao menu principal
                 case 5:
-                    System.out.println("\n".repeat(5));
+                    System.out.println("\n".repeat(4));
                     break;
 
                 // . CASO DEFAULT -> Opção inválida
@@ -144,4 +162,5 @@ public class ClienteUI {
             }
         }
     }
+
 }

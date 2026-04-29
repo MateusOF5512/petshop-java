@@ -33,6 +33,8 @@ public class PetUI {
 
                 // . CASO 1 -> Adicionar pet
                 case 1:
+                    boolean cancelar = false;
+
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe os dados do pet ------");
                     System.out.println();
@@ -57,13 +59,13 @@ public class PetUI {
 
                     try {
                         clienteService.listarClientes();
+                        System.out.println();
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
                         System.err.println("[INFO] Cadastre um cliente antes de adicionar um pet.");
                         break;
                     }
 
-                    boolean cancelar = false;
                     Cliente dono = null;
                     while (dono == null && !cancelar) {
                         System.out.print("Digite o CPF do dono do pet: ");
@@ -91,8 +93,15 @@ public class PetUI {
                 case 2:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Informe o pet a ser removido ------");
-                    System.out.println();
 
+                    try {
+                        petService.listarPets();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
+                    
                     System.out.print("Digite o codigo do pet: ");
                     String codigoRemover = EntradaUtil.lerString();
 
@@ -121,7 +130,14 @@ public class PetUI {
                 case 4:
                     System.out.println("\n".repeat(5));
                     System.out.println("------- Insira os dados a serem atualizados ------");
-                    System.out.println();
+
+                    try {
+                        petService.listarPets();
+                        System.out.println();
+                    } catch (RuntimeException e) {
+                        System.err.println(e.getMessage());
+                        break;
+                    }
 
                     System.out.print("Digite o codigo do pet a ser atualizado: ");
                     String codigoAntigo = EntradaUtil.lerString();
@@ -146,6 +162,7 @@ public class PetUI {
 
                     try {
                         clienteService.listarClientes();
+                        System.out.println();
                     } catch (RuntimeException e) {
                         System.err.println(e.getMessage());
                         System.err.println("[INFO] Cadastre um cliente antes de adicionar um pet.");
@@ -156,7 +173,9 @@ public class PetUI {
                     Cliente donoAtualizar = null;
                     while (donoAtualizar == null && !cancelarAtualizar) {
                         System.out.print("Digite o novo CPF do dono do pet: ");
-                        String cpf = EntradaUtil.lerString();
+                        String cpf = EntradaUtil.lerString().trim().replace(".", "")
+                        .replace("-", "").replace(" ", "");
+
                         try {
                             donoAtualizar = clienteService.buscarCliente(cpf);
                         } catch (RuntimeException e) {
