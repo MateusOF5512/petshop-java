@@ -2,6 +2,7 @@ package service;
 
 import repository.ClienteRepository;
 import repository.PetRepository;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import model.Cliente;
@@ -71,7 +72,13 @@ public class ClienteService {
 
         Cliente cliente = buscarCliente(cpf);
 
-        repositorioPets.listar().removeIf(p -> p.getDono().getCpf().equals(cpf));
+        // . Itera sobre uma cópia da lista para evitar ConcurrentModificationException ao remover da original
+        for (Pet p : new ArrayList<>(repositorioPets.listar())) {
+            if (p.getDono().getCpf().equals(cpf)) {
+                repositorioPets.remover(p);
+            }
+        }
+
         repositorioClientes.remover(cliente);
     }
 
